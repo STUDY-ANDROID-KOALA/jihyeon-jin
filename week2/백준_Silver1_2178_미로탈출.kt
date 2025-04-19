@@ -1,5 +1,3 @@
-package com.koala.study.serious.week1
-
 import java.util.LinkedList
 
 fun main() = with(System.out.bufferedWriter()) {
