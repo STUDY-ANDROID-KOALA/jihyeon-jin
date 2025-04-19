@@ -21,26 +21,26 @@ fun main() = with(System.out.bufferedWriter()) {
     var eatCount = 0
     var sharkSize = 2
     var total = 0
-    data class State(val x : Int, val y : Int, val count: Int)
-    var startState = State(0,0,0)
+    data class Shark(val x : Int, val y : Int, val count: Int)
+    var startState = Shark(0,0,0)
 
     for(i in 0 until n){
         val line = br.readLine().split(" ").map { it.toInt() }
         for(j in 0 until n){
             map[i][j] = line[j]
             if(map[i][j] == 9) {
-                startState = State(i, j, 0)
+                startState = Shark(i, j, 0)
                 map[i][j] = 0
             }
         }
     }
 
-    fun bfs(x:Int, y:Int) : State {
-        val queue = LinkedList<State>()
+    fun bfs(x:Int, y:Int) : Shark {
+        val queue = LinkedList<Shark>()
         val visited = Array(n) { Array(n) { false } }
-        val canMove = mutableListOf<State>()
+        val canMove = mutableListOf<Shark>()
         var minDist = Int.MAX_VALUE
-        queue.add(State(x, y, 0))
+        queue.add(Shark(x, y, 0))
         visited[x][y] = true
         while (queue.isNotEmpty()) {
             val head = queue.poll()
@@ -60,7 +60,7 @@ fun main() = with(System.out.bufferedWriter()) {
                     map[nx][ny] <= sharkSize
                 ) {
                     visited[nx][ny] = true
-                    queue.add(State(nx, ny, head.count + 1))
+                    queue.add(Shark(nx, ny, head.count + 1))
                 }
             }
         }
@@ -74,9 +74,9 @@ fun main() = with(System.out.bufferedWriter()) {
             }
             total += target.count
             map[target.x][target.y] = 0
-            return State(target.x, target.y, 0)
+            return Shark(target.x, target.y, 0)
         }
-        return State(-1, -1, -1)
+        return Shark(-1, -1, -1)
     }
 
     while(startState.x != -1) {
