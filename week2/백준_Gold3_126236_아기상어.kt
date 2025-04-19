@@ -14,7 +14,6 @@ bfs로 최단거리로 물고기 잡아 먹기
 fun main() = with(System.out.bufferedWriter()) {
     val br = System.`in`.bufferedReader()
     val v = BooleanArray(3){ false }
-    v.
     val n = br.readLine().toInt()
     val map = Array(n) { Array(n){ 0 } }
     val dx = arrayOf(0, 0, -1, 1)
